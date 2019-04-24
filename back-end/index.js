@@ -37,6 +37,32 @@ const db = require('./models')
 
 
 //add new movie by UPC
+app.post('/getUpcInfo', (request, response) =>{
+    let upc = request.body.upc
+    let replyObj = {
+        title:"",
+        upc:"",
+        format:"",
+        imgUrl:[]
+    }
+
+    axios.get(`https://api.upcitemdb.com/prod/trial/lookup?upc=${upc}`)
+        .then((res)=>{
+          //console.log(res.data.items)
+          replyObj = {
+            title:res.data.items[0].title,
+            upc:res.data.items[0].upc,
+            format:"",
+            imgUrl:res.data.items[0].images
+          }
+          response.json(replyObj)
+        })
+        .catch((err) =>{
+          console.log(err)
+        })
+})
+
+  
 
 //add new movie manually
 

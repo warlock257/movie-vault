@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import axios from 'axios'
+
+import Navbar from './components/navbar'
+import SearchPage from './components/searchPage'
+import AddNew from './components/addNew'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+class App extends Component {
+  state = {
+    currentMovie : {}
+  }
+
+  searchForUpc = (ev) =>{
+    ev.preventDefault();
+    console.log(ev.target.upcInput.value)
+    let upc = ev.target.upcInput.value
+    let axConfig ={
+      method:"post",
+      url:"/getUpcInfo",
+      data:{
+        "upc":upc
+      },
+      headers:{
+        'content-type':'application/json'
+      }
+    }
+    axios(axConfig)
+    .then((res)=>{
+      console.log(res.data)
+      this.setState({
+        currentMovie:res.data
+      })
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+      <Router>
+        <Navbar />
+
+        <Switch>
+          <Route exact path="/" label="searchPage" render={(props) =>{
+                                          return <SearchPage {...props} />
+                                        }} />
+
+          <Route path="/addnew" label="addNew"  render={(props) =>{
+                                          return <AddNew {...props} searchForUpc={this.searchForUpc}
+                                                                    currentMovie={this.state.currentMovie} />
+                                        }} />
+        </Switch>
+      </Router>
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+export default App
