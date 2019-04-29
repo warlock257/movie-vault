@@ -64,6 +64,8 @@ body{
     input{
       width:90%;
       height:2rem;
+      padding-left:15px;
+      font-size:1.5rem;
     }
     button{
       height: 2.5rem;
@@ -112,6 +114,8 @@ body{
   input{
     width:90%;
     height:2rem;
+    padding-left:15px;
+    font-size:1.5rem;
   }
   button{
     height: 2.5rem;
@@ -125,7 +129,12 @@ body{
   .buttonSearch{
     background-color:#544a4b;
   }
+
   .searchUPCResults{
+    .discRadios{
+      display:flex;
+      justify-content: space-evenly;
+    }
     img{
       max-width: 90%;
     }

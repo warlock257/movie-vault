@@ -1,1 +1,13 @@
-password in config.json AND index.js
+ALL
+	key props
+
+TOPBAR
+	highlight selected page
+
+SEARCH	
+	more styling in results
+
+ADD NEW
+	search upc in DB, see if it's already there
+	change button accordingly
+	

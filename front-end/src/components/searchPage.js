@@ -1,22 +1,30 @@
 import React, { Component } from 'react'
 
 export default class searchPage extends Component {
-  render() {
-    let ownStatus = true
-    let ownButton
 
-    if (ownStatus === true){
-      ownButton = <button className="buttonOwned">Owned</button>
-    } else {
-      ownButton = <button className="buttonNotOwned">Not Owned</button>
-    }
+
+
+
+  render() {
+
+    let titleResults = this.props.titleSearchResults.map((object, index) =>{
+      return(
+        <div className="singleDBResult">
+          <h3>{this.props.titleSearchResults[index].title}</h3>
+          <p>UPC: {this.props.titleSearchResults[index].upc}</p>
+          <p>Format: {this.props.titleSearchResults[index].disc}</p>
+          <img src={this.props.titleSearchResults[index].imgUrl} alt="movie poster"/>
+          <hr/>
+      </div>
+      )
+    })
 
     return (
       <div className="searchPage">
 
         <div className="searchArea">
           <h1>Search Movie Vault</h1>
-          <form>
+          <form onSubmit={this.props.searchForTitle}>
             <input type="text" name="searchDb" />
             <button>Search</button>
           </form>
@@ -25,17 +33,10 @@ export default class searchPage extends Component {
         <hr/>
 
         <div className="dbResults">
-
-          <div className="singleDBResult">
-            <h3>Black Panther 4K Ultra [Blu-ray]</h3>
-            <p>UPC: 786936856316</p>
-            <img src="https://d29pz51ispcyrv.cloudfront.net/images/I/J3u8uowQRzyQ7O6x1.MD256.JPEG" alt="movie poster"/>
-            {ownButton}
-            <hr/>
-          </div>
+          {titleResults}
+        </div>
 
         </div>
-      </div>
     )
   }
 }

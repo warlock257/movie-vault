@@ -20,13 +20,20 @@ export default function searchResult(props) {
     return (
         <div className="searchUPCResults">
             <h3>{props.currentMovie.title}</h3>
-            {ownButton}
+            <form onSubmit={props.addToCollection}>
+                <div className="discRadios">
+                    <div><input type="radio" name="disc" value="dvd" /> DVD</div>
+                    <div><input type="radio" name="disc" value="bd" checked /> Blu-Ray</div>
+                    <div><input type="radio" name="disc" value="uhd" /> UHD</div>
+                </div>
+                <button type="submit" className="buttonOwned" >Add to Collection</button>
+            </form>
+
             <img src={moviePoster} alt="movie poster"
             onError={(e)=>{
                 e.target.onerror = null; 
                 e.target.src="placeholder.jpg"}
             } />
-            
         </div>
     )
 }

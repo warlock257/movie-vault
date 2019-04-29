@@ -3,6 +3,7 @@ const sequalize = new Sequelize("movies","postgres", process.env.dbPass, {
     "dialect": "postgres",
     "host": "localhost"
 });
+const Op = Sequelize.Op
 
 const express = require('express');
 const app = express();
@@ -78,7 +79,7 @@ app.post('/addMovieManually', (request, response) =>{
 
 
 
-//query db
+//query db by UPC
 app.post('/searchDBByUpc', (request, response) =>{
   db.movies.findAll({
     where: {
@@ -93,15 +94,34 @@ app.post('/searchDBByUpc', (request, response) =>{
     console.log(err)
     response.json(err)
   })
-  
+})
+
+
+//query by title
+app.post('/searchDbByTitle', (request, response) =>{
+  db.movies.findAll({
+    limit:10,
+    where:{
+      title:{
+        [Op.iLike]:'%' + request.body.title + '%'
+      }
+    }
+  })
+  .then((dbres) =>{
+    console.log(dbres)
+    response.json(dbres)
+  })
+  .catch((err) =>{
+    console.log(err)
+    response.json(err)
+  })
 })
 
 
 
 
+
 //delete movie (from back end / postman only)
-
-
 
 app.listen(PORT, () =>{
     console.log("Listening on port: " + PORT)
