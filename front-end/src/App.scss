@@ -1,7 +1,10 @@
 .App {
   text-align: center;
-  background-color: #26262d;
   color:white;
+}
+
+body{
+  background-color: #26262d;
 }
 
 .App-logo {
@@ -77,8 +80,8 @@
     margin:0;
   }
 
-  .searchResults{
-    .singleResult{
+  .dbResults{
+    .singleDBResult{
       h3{
         margin-bottom:10px;
       }
@@ -102,4 +105,36 @@
       }
     }
   }
+}
+
+.addNew{
+  height: 100vh;
+  input{
+    width:90%;
+    height:2rem;
+  }
+  button{
+    height: 2.5rem;
+    width:120px;
+    display:block;
+    margin:15px auto;
+    color:white;
+    border:none;
+    border-radius:5px;
+  }
+  .buttonSearch{
+    background-color:#544a4b;
+  }
+  .searchUPCResults{
+    img{
+      max-width: 90%;
+    }
+    .buttonOwned{
+      background-color: green;
+    }
+    .buttonNotOwned{
+      background-color: red;
+    }
+  }
+
 }

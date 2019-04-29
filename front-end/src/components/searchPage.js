@@ -24,9 +24,9 @@ export default class searchPage extends Component {
 
         <hr/>
 
-        <div className="searchResults">
+        <div className="dbResults">
 
-          <div className="singleResult">
+          <div className="singleDBResult">
             <h3>Black Panther 4K Ultra [Blu-ray]</h3>
             <p>UPC: 786936856316</p>
             <img src="https://d29pz51ispcyrv.cloudfront.net/images/I/J3u8uowQRzyQ7O6x1.MD256.JPEG" alt="movie poster"/>

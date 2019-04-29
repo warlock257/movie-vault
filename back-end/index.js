@@ -53,7 +53,7 @@ app.post('/getUpcInfo', (request, response) =>{
             title:res.data.items[0].title,
             upc:res.data.items[0].upc,
             format:"",
-            imgUrl:res.data.items[0].images
+            imgUrl:res.data.items[0].images[0]
           }
           response.json(replyObj)
         })
