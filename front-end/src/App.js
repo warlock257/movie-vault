@@ -5,7 +5,7 @@ import axios from 'axios'
 import Navbar from './components/navbar'
 import SearchPage from './components/searchPage'
 import AddNew from './components/addNew'
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   state = {

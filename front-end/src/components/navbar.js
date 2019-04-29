@@ -5,8 +5,20 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="navBar">
-        <Link to="/">Search</Link>
-        <Link to="/addnew">Add New</Link>
+
+        <div className="searchBarAndText">
+          <Link to="/">
+            <img src="searchIcon.png" alt="search icon" className="searchIcon" /> 
+            <p>Search</p>
+          </Link>
+        </div>
+
+        <div className="newBarAndText">
+          <Link to="/addnew">
+            <img src="addNewIcon.png" alt="add new icon" className="newIcon" /> 
+            <p>Add New</p>
+          </Link>
+        </div>
       </div>
     )
   }
