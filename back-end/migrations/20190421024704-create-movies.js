@@ -14,9 +14,10 @@ module.exports = {
       },
       upc: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique:true
       },
-      format: {
+      disc: {
         type: Sequelize.STRING
       },
       imgUrl: {
