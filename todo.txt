@@ -1,9 +1,6 @@
 ALL
 	key props
 
-TOPBAR
-	highlight selected page
-
 SEARCH	
 	more styling in results
 

@@ -43,7 +43,7 @@ body{
   display:flex;
   justify-content: space-evenly;
   .searchBarAndText,.newBarAndText{
-
+    padding:0 15px;
     .searchIcon,.newIcon{
       height: 60px;
       padding-top: 10px;
@@ -55,6 +55,9 @@ body{
     a{
       text-decoration: none;
     }
+  }
+  .buttonHighlight{
+    background-color:grey;
   }
 }
 

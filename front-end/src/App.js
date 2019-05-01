@@ -9,8 +9,20 @@ import './App.scss';
 
 class App extends Component {
   state = {
+    page:"search",
     currentMovie : {},
     titleSearchResults:[]
+  }
+
+  setSearchPage = () =>{
+    this.setState({
+      page:"search"
+    })
+  }
+  setAddPage = () =>{
+    this.setState({
+      page:"add"
+    })
   }
 
   searchForUpc = (ev) =>{
@@ -97,7 +109,9 @@ class App extends Component {
     return (
       <div className="App">
       <Router>
-        <Navbar />
+        <Navbar setSearchPage={this.setSearchPage}
+                page={this.state.page}
+                setAddPage={this.setAddPage}   />
 
         <Switch>
           <Route exact path="/" label="searchPage" render={(props) =>{

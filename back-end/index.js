@@ -1,9 +1,25 @@
 const Sequelize = require('sequelize');
-const sequalize = new Sequelize("movies","postgres", process.env.dbPass, {
+
+if(process.env.DATABASE_URL){
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres',
+    logging:  false //true
+  })
+} else {
+  const sequalize = new Sequelize("movies","postgres", process.env.dbPass, {
     "dialect": "postgres",
     "host": "localhost"
 });
+}
+
 const Op = Sequelize.Op
+
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 const express = require('express');
 const app = express();
@@ -18,23 +34,24 @@ app.use(cors({
     origin:"http://localhost:3000"
 }))
 
+//public folder
+app.use(express.static('./public'));
+
 //we are requiring in all the models in the models folder, and storing in variable db
 const db = require('./models')
 
-//create a new movie EXAMPLE
-// const blackPanther = {
-//     title:"Black Panther 4K Ultra [Blu-ray]",
-//     upc:"786936856316",
-//     disc:"uhd",
-//     imgUrl:"https://d29pz51ispcyrv.cloudfront.net/images/I/J3u8uowQRzyQ7O6x1.MD256.JPEG"
-// }
-// db.movies.create(blackPanther)
-//     .then(newMovie => {
-//         console.log(newMovie);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect()
+    const result = await client.query('SELECT * FROM test_table');
+    const results = { 'results': (result) ? result.rows : null};
+    res.render('pages/db', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 
 
 //get UPC info
@@ -123,6 +140,23 @@ app.post('/searchDbByTitle', (request, response) =>{
 
 //delete movie (from back end / postman only)
 
+
 app.listen(PORT, () =>{
     console.log("Listening on port: " + PORT)
 })
+
+
+//create a new movie EXAMPLE
+// const blackPanther = {
+//     title:"Black Panther 4K Ultra [Blu-ray]",
+//     upc:"786936856316",
+//     disc:"uhd",
+//     imgUrl:"https://d29pz51ispcyrv.cloudfront.net/images/I/J3u8uowQRzyQ7O6x1.MD256.JPEG"
+// }
+// db.movies.create(blackPanther)
+//     .then(newMovie => {
+//         console.log(newMovie);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
