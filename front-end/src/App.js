@@ -5,6 +5,7 @@ import axios from 'axios'
 import Navbar from './components/navbar'
 import SearchPage from './components/searchPage'
 import AddNew from './components/addNew'
+import ManualAdd from './components/manualAdd'
 import './App.scss';
 
 class App extends Component {
@@ -22,6 +23,11 @@ class App extends Component {
   setAddPage = () =>{
     this.setState({
       page:"add"
+    })
+  }
+  setManualPage = () =>{
+    this.setState({
+      page:"manual"
     })
   }
 
@@ -98,6 +104,7 @@ class App extends Component {
     .then((res)=>{
       console.log("Movie added to database")
       console.log(res.data)
+      alert("movie added")
     })
     .catch((err) =>{
       console.log(err)
@@ -109,9 +116,10 @@ class App extends Component {
     return (
       <div className="App">
       <Router>
-        <Navbar setSearchPage={this.setSearchPage}
-                page={this.state.page}
-                setAddPage={this.setAddPage}   />
+        <Navbar page={this.state.page}
+                setSearchPage={this.setSearchPage}
+                setAddPage={this.setAddPage}
+                setManualPage={this.setManualPage}   />
 
         <Switch>
           <Route exact path="/" label="searchPage" render={(props) =>{
@@ -123,6 +131,11 @@ class App extends Component {
                                           return <AddNew {...props} searchForUpc={this.searchForUpc}
                                                                     currentMovie={this.state.currentMovie}
                                                                     addToCollection={this.addToCollection} />
+                                        }} />
+          <Route path="/manual" label="manualAdd"  render={(props) =>{
+                                          return <ManualAdd {...props} 
+                                                                    currentMovie={this.state.currentMovie}
+                                                                     />
                                         }} />
         </Switch>
       </Router>

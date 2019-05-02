@@ -7,4 +7,5 @@ SEARCH
 ADD NEW
 	search upc in DB, see if it's already there
 	change button accordingly
+
 	

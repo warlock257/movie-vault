@@ -42,9 +42,9 @@ body{
   height: 100px;
   display:flex;
   justify-content: space-evenly;
-  .searchBarAndText,.newBarAndText{
+  .searchBarAndText,.newBarAndText,.manualBarAndText{
     padding:0 15px;
-    .searchIcon,.newIcon{
+    .searchIcon,.newIcon,.manualIcon{
       height: 60px;
       padding-top: 10px;
     }
@@ -149,4 +149,36 @@ body{
     }
   }
 
+}
+
+.manualAdd{
+  .discRadios{
+    display:flex;
+    justify-content: space-evenly;
+    height:75px;
+    margin-top:15px;
+  }
+  input{
+    width:90%;
+    height:2rem;
+    padding-left:15px;
+    font-size:1.5rem;
+  }
+  button{
+    height: 2.5rem;
+    width:120px;
+    display:block;
+    margin:15px auto;
+    color:white;
+    border:none;
+    border-radius:5px;
+  }
+  .buttonOwned{
+    background-color: green;
+  }
+  .previewPic{
+    img{
+      max-height: 250px;
+    }
+  }
 }
