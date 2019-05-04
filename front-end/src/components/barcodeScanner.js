@@ -27,15 +27,15 @@ export default class barcodeScanner extends Component {
                 },
                 decoder: {
                     readers: [
-                        "code_128_reader",
-                        "ean_reader",
-                        "ean_8_reader",
-                        "code_39_reader",
-                        "code_39_vin_reader",
-                        "codabar_reader",
-                        "upc_reader",
+                        // "code_128_reader",
+                        // "ean_reader",
+                        // "ean_8_reader",
+                        // "code_39_reader",
+                        // "code_39_vin_reader",
+                        // "codabar_reader",
+                         "upc_reader",
                         "upc_e_reader",
-                        "i2of5_reader"
+                        // "i2of5_reader"
                     ],
                     debug: {
                         showCanvas: true,
@@ -92,7 +92,8 @@ export default class barcodeScanner extends Component {
 
 
             Quagga.onDetected( (result) => {
-                console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+                //console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+                console.log(result.codeResult.code)
             });
         }
     }
