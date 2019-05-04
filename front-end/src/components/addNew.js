@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SearchResult from './searchResult'
+import BarcodeScanner from './barcodeScanner'
 
 export default class addNew extends Component {
 
@@ -20,6 +21,8 @@ export default class addNew extends Component {
             <input type="text" name="upcInput" placeholder="Enter UPC number" />
             <button type="submit" className="buttonSearch" >Search</button>
         </form>
+
+        <BarcodeScanner />
 
         {searchResults}
       </div>
