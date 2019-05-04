@@ -94,6 +94,7 @@ export default class barcodeScanner extends Component {
             Quagga.onDetected( (result) => {
                 //console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
                 console.log(result.codeResult.code)
+                this.props.searchForUpcPic(result.codeResult.code)
             });
         }
     }

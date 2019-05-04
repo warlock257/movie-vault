@@ -57,6 +57,34 @@ class App extends Component {
     })
   }
 
+  searchForUpcPic = (upcCode) =>{
+    //ev.preventDefault();
+    console.log("searchForUpcPic fired")
+    let upc = upcCode
+    let axConfig ={
+      method:"post",
+      url:"/getUpcInfo",
+      data:{
+        "upc":upc
+      },
+      headers:{
+        'content-type':'application/json'
+      }
+    }
+    axios(axConfig)
+    .then((res)=>{
+      console.log(res.data)
+      this.setState({
+        currentMovie:res.data
+      })
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
+  }
+
+
+
   searchForTitle = (ev) =>{
     ev.preventDefault();
     //console.log(ev.target.searchDb.value)
@@ -129,6 +157,7 @@ class App extends Component {
 
           <Route path="/addnew" label="addNew"  render={(props) =>{
                                           return <AddNew {...props} searchForUpc={this.searchForUpc}
+                                                                    searchForUpcPic={this.searchForUpcPic}
                                                                     currentMovie={this.state.currentMovie}
                                                                     addToCollection={this.addToCollection} />
                                         }} />

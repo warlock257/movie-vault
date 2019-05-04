@@ -22,7 +22,7 @@ export default class addNew extends Component {
             <button type="submit" className="buttonSearch" >Search</button>
         </form>
 
-        <BarcodeScanner />
+        <BarcodeScanner searchForUpcPic={this.props.searchForUpcPic} />
 
         {searchResults}
       </div>
