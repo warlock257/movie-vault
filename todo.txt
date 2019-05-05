@@ -2,10 +2,11 @@ ALL
 	key props
 
 SEARCH	
-	more styling in results
+
 
 ADD NEW
 	search upc in DB, see if it's already there
 	change button accordingly
 
-	
+
+MANUAL ADD
